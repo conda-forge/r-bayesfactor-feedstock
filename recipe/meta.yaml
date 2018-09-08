@@ -1,5 +1,4 @@
-{% set version = '0.9.12-2' %}
-
+{% set version = '0.9.12-4.2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,13 +9,13 @@ package:
 source:
   fn: BayesFactor_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/BayesFactor_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/BayesFactor/BayesFactor_{{ version }}.tar.gz
-  sha256: 84f24d55a0e956118210ebce00d3ce1ddbd6b5d0f167f6bbfaa9dc5f17d2ee9f
+    - {{ cran_mirror }}/src/contrib/BayesFactor_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/BayesFactor/BayesFactor_{{ version }}.tar.gz
+  sha256: 6fe8d19113084b1bb278daa824603db5b93ee02d55a24214a82f081dcf1e08fc
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -24,11 +23,14 @@ build:
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-matrix >=1.1_1
@@ -37,29 +39,31 @@ requirements:
     - r-rcppeigen >=0.3.2.2.0
     - r-coda
     - r-gtools
+    - r-hypergeo
     - r-mvtnorm
     - r-pbapply
     - r-stringr
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-matrix >=1.1_1
     - r-matrixmodels
     - r-rcpp >=0.11.2
     - r-rcppeigen >=0.3.2.2.0
     - r-coda
     - r-gtools
+    - r-hypergeo
     - r-mvtnorm
     - r-pbapply
     - r-stringr
 
 test:
   commands:
-    - $R -e "library('BayesFactor')"  # [not win]
+    - $R -e "library('BayesFactor')"           # [not win]
     - "\"%R%\" -e \"library('BayesFactor')\""  # [win]
 
 about:
-  home: http://bayesfactorpcl.r-forge.r-project.org/
+  home: https://richarddmorey.github.io/BayesFactor/
   license: GPL-2
   summary: A suite of functions for computing various Bayes factors for simple designs, including
     contingency tables, one- and two-sample designs, one-way designs, general ANOVA
@@ -75,3 +79,4 @@ extra:
     - daler
     - jdblischak
     - cbrueffer
+    - dbast
