@@ -7,7 +7,6 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: BayesFactor_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/BayesFactor_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/BayesFactor/BayesFactor_{{ version }}.tar.gz
@@ -16,7 +15,6 @@ source:
 build:
   merge_build_host: True  # [win]
   number: 1002
-  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -65,7 +63,7 @@ test:
 
 about:
   home: https://richarddmorey.github.io/BayesFactor/
-  license: GPL-2
+  license: GPL-2.0-only
   summary: A suite of functions for computing various Bayes factors for simple designs, including
     contingency tables, one- and two-sample designs, one-way designs, general ANOVA
     designs, and linear regression.
