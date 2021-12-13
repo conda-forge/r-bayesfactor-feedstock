@@ -1,4 +1,4 @@
-{% set version = '0.9.12-4.2' %}
+{% set version = "0.9.12-4.3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/BayesFactor_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/BayesFactor/BayesFactor_{{ version }}.tar.gz
-  sha256: 6fe8d19113084b1bb278daa824603db5b93ee02d55a24214a82f081dcf1e08fc
+  sha256: dcf9f88f31e7ac0451925528b025674ce38fe0c068868821c115ed42485e309c
 
 build:
-  merge_build_host: True  # [win]
-  number: 1002
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -64,11 +64,9 @@ test:
 about:
   home: https://richarddmorey.github.io/BayesFactor/
   license: GPL-2.0-only
-  summary: A suite of functions for computing various Bayes factors for simple designs, including
-    contingency tables, one- and two-sample designs, one-way designs, general ANOVA
-    designs, and linear regression.
+  summary: A suite of functions for computing various Bayes factors for simple designs, including contingency tables, one- and two-sample designs, one-way designs, general ANOVA designs, and linear regression.
   license_family: GPL2
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
