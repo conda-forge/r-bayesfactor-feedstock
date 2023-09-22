@@ -3,6 +3,7 @@ About r-bayesfactor-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-bayesfactor-feedstock/blob/main/LICENSE.txt)
 
+
 About r-bayesfactor
 -------------------
 
@@ -11,6 +12,7 @@ Home: https://richarddmorey.github.io/BayesFactor/
 Package license: GPL-2.0-only
 
 Summary: A suite of functions for computing various Bayes factors for simple designs, including contingency tables, one- and two-sample designs, one-way designs, general ANOVA designs, and linear regression.
+
 About r-bayesfactor
 -------------------
 
