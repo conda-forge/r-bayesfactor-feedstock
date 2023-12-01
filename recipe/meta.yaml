@@ -1,4 +1,4 @@
-{% set version = "0.9.12-4.5" %}
+{% set version = "0.9.12-4.6" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/BayesFactor_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/BayesFactor/BayesFactor_{{ version }}.tar.gz
-  sha256: b0a61f78cedb0bdb87903848f7196c952c75fb39610dc5a5d697abcf3ea66c81
+  sha256: fd5f6e092a37d5edd1801b023628b114abf1d3510c49177844b1a35aaa1175db
 
 build:
   merge_build_host: true  # [win]
